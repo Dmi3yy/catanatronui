@@ -4,10 +4,10 @@ import Paper from "@mui/material/Paper";
 import "./Tile.scss";
 import brickTile from "../assets/tile_brick.svg";
 import desertTile from "../assets/tile_desert.svg";
-import grainTile from "../assets/tile_wheat.svg";
-import lumberTile from "../assets/tile_wood.svg";
-import oreTile from "../assets/tile_ore.svg";
-import woolTile from "../assets/tile_sheep.svg";
+import grainTile from "../assets/tile_wheat.png";
+import lumberTile from "../assets/tile_wood.png";
+import oreTile from "../assets/tile_ore.png";
+import woolTile from "../assets/tile_sheep.png";
 import maritimeTile from "../assets/tile_maritime.svg";
 import { SQRT3, tilePixelVector, type Direction } from "../utils/coordinates";
 
@@ -175,8 +175,12 @@ export default function Tile({
         top: y - h / 2,
         width: w,
         height: h,
-        backgroundImage: `url("${resourceTile}")`,
+        backgroundImage: `url("${resourceTile}?v=2")`,
         backgroundSize: "contain",
+        backgroundRepeat: "no-repeat",
+        backgroundPositionY: "6px",
+        backgroundPositionX: "1px"
+
       }}
       onClick={onClick}
     >
