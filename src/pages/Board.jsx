@@ -44,8 +44,8 @@ export default function Board({
   isMovingRobber,
 }) {
   // TODO: Keep in sync with CSS
-  const containerHeight = height - 144 - 38 - 40;
-  const containerWidth = isMobile ? width - 280 : width;
+  const containerHeight = width-20;
+  const containerWidth = width-20;
   const center = [containerWidth / 2, containerHeight / 2];
   const size = computeDefaultSize(containerWidth, containerHeight);
   if (!size) {
