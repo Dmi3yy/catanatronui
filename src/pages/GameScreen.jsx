@@ -3,20 +3,104 @@ import { useParams } from "react-router-dom";
 import PropTypes from "prop-types";
 import { GridLoader } from "react-spinners";
 import { useSnackbar } from "notistack";
-
 import ZoomableBoard from "./ZoomableBoard";
 import ActionsToolbar from "./ActionsToolbar";
-
 import "./GameScreen.scss";
-import LeftDrawer from "../components/LeftDrawer";
-import RightDrawer from "../components/RightDrawer";
 import { store } from "../store";
 import ACTIONS from "../actions";
-import { getState, postAction } from "../utils/apiClient";
+import { getState, postAction, getMctsAnalysis } from "../utils/apiClient";
 import { dispatchSnackbar } from "../components/Snackbar";
-import { getHumanColor } from "../utils/stateUtils";
+import { getHumanColor, playerKey } from "../utils/stateUtils";
+import PlayerStateBox from "../components/PlayerStateBox";
+import Divider from "@mui/material/Divider";
+import cn from "classnames";
+import { humanizeAction } from "../components/Prompt";
+import { CircularProgress, Button } from "@mui/material";
+import AssessmentIcon from "@mui/icons-material/Assessment";
 
 const ROBOT_THINKING_TIME = 300;
+
+function LeftContent({ gameState }) {
+  return (
+    <div className="left-content">
+      {gameState.colors.map((color) => {
+        const key = playerKey(gameState, color);
+        return (
+          <React.Fragment key={color}>
+            <PlayerStateBox
+              playerState={gameState.player_state}
+              playerKey={key}
+              color={color}
+            />
+            <Divider />
+          </React.Fragment>
+        );
+      })}
+    </div>
+  );
+}
+
+function RightContent({ gameId, gameState }) {
+  const [mctsResults, setMctsResults] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const handleAnalyzeClick = async () => {
+    if (!gameId || !gameState || gameState.winning_color) return;
+    try {
+      setLoading(true);
+      setError(null);
+      const result = await getMctsAnalysis(gameId);
+      if (result.success) {
+        setMctsResults(result.probabilities);
+      } else {
+        setError(result.error || "Analysis failed");
+      }
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+  return (
+    <div className="right-content analysis-box">
+      <div className="analysis-header">
+        <h3>Win Probability Analysis</h3>
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={handleAnalyzeClick}
+          disabled={loading || gameState?.winning_color}
+          startIcon={loading ? <CircularProgress size={20} /> : <AssessmentIcon />}
+        >
+          {loading ? "Analyzing..." : "Analyze"}
+        </Button>
+      </div>
+      {error && <div className="error-message">{error}</div>}
+      {mctsResults && !loading && !error && (
+        <div className="probability-bars">
+          {Object.entries(mctsResults).map(([color, probability]) => (
+            <div key={color} className={`probability-row ${color.toLowerCase()}`}>
+              <span className="player-color">{color}</span>
+              <span className="probability-bar">
+                <div className="bar-fill" style={{ width: `${probability}%` }} />
+              </span>
+              <span className="probability-value">{probability}%</span>
+            </div>
+          ))}
+        </div>
+      )}
+      <Divider />
+      <div className="log">
+        {gameState.actions.slice().reverse().map((action, i) => (
+          <div key={i} className={cn("action foreground", action[0])}>
+            {humanizeAction(gameState, action)}
+          </div>
+        ))}
+      </div>
+    </div>
+    
+  );
+}
 
 function GameScreen({ replayMode }) {
   const { gameId, stateIndex } = useParams();
@@ -85,11 +169,16 @@ function GameScreen({ replayMode }) {
 
   return (
     <main>
-      <h1 className="logo">Catanatron</h1>
-      <ZoomableBoard replayMode={replayMode} />
-      <ActionsToolbar isBotThinking={isBotThinking} replayMode={replayMode} />
-      <LeftDrawer />
-      <RightDrawer />
+      <div>
+        <LeftContent gameState={state.gameState} />
+        <div className="center-content">
+          <div className="map-square-wrapper">
+            <ZoomableBoard replayMode={replayMode} />
+          </div>
+          <ActionsToolbar isBotThinking={isBotThinking} replayMode={replayMode} />
+        </div>
+        <RightContent gameId={gameId} gameState={state.gameState} />
+      </div>
     </main>
   );
 }

@@ -136,25 +136,21 @@ export default function ZoomableBoard({ replayMode }) {
   }, []);
 
   return (
-    <TransformWrapper>
-      <div className="board-container">
-        <TransformComponent>
-          <Board
-            width={width}
-            height={height}
-            buildOnNodeClick={buildOnNodeClick}
-            buildOnEdgeClick={buildOnEdgeClick}
-            handleTileClick={handleTileClick}
-            nodeActions={nodeActions}
-            edgeActions={edgeActions}
-            replayMode={replayMode}
-            show={show}
-            gameState={state.gameState}
-            isMobile={isMobile}
-            isMovingRobber={state.isMovingRobber}
-          />
-        </TransformComponent>
-      </div>
-    </TransformWrapper>
+    <div className="board-container">
+      <Board
+        width={width}
+        height={height}
+        buildOnNodeClick={buildOnNodeClick}
+        buildOnEdgeClick={buildOnEdgeClick}
+        handleTileClick={handleTileClick}
+        nodeActions={nodeActions}
+        edgeActions={edgeActions}
+        replayMode={replayMode}
+        show={show}
+        gameState={state.gameState}
+        isMobile={isMobile}
+        isMovingRobber={state.isMovingRobber}
+      />
+    </div>
   );
 }
