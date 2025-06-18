@@ -63,7 +63,7 @@
 
   max-width: variables.$sm-breakpoint;
   float: left;
-  width: 50%;
+  width: calc(50% - 0.5rem);
 
   .scores {
     display: flex;

@@ -27,11 +27,11 @@ function LeftContent({ gameState }) {
         const key = playerKey(gameState, color);
         return (
           <React.Fragment key={color}>
-            <PlayerStateBox
-              playerState={gameState.player_state}
-              playerKey={key}
-              color={color}
-            />
+              <PlayerStateBox
+                playerState={gameState.player_state}
+                playerKey={key}
+                color={color}
+              />
             <Divider />
           </React.Fragment>
         );
