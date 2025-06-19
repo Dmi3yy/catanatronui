@@ -25,7 +25,7 @@
   background: #00000000;
 }
 .WHITE.foreground {
-  color: white;
+  color: variables.$white;
   background: #00000000;
 }
 
@@ -77,11 +77,30 @@
 }
 .road {
   position: absolute;
-  border: 1px solid variables.$dark-gray;
   width: 100%;
   height: 100%;
-  border-radius: 2px;
+  border-radius: 6px;
+  opacity: 0.7;
+  backdrop-filter: blur(8px) saturate(150%);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  overflow: hidden; /* якщо хочеш обрізати псевдоелемент */
 }
+
+.road::before {
+  content: ""; /* без цього псевдоелемент не існує */
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+
+  z-index: 0; /* або -1 якщо хочеш під .road */
+
+  /* додаткові приколи, якщо хочеш Liquid Glass поверх */
+  mix-blend-mode: screen;
+  opacity: 0.8;
+  border-radius: 6px;
+}
+
 @media screen and (min-width: variables.$sm-breakpoint) {
   .edge {
     height: 12px; // stroke
@@ -108,7 +127,7 @@
 }
 .settlement,
 .city {
-  border-radius: 4px; // mimic Paper
+  border-radius: 15px; // mimic Paper
   border: 2px solid variables.$dark-gray;
 }
 
