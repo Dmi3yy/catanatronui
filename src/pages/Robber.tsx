@@ -4,6 +4,7 @@ import {
   type CubeCoordinate,
 } from "../utils/coordinates";
 import { Paper } from "@mui/material";
+import RobberIcon from "../assets/icons/figure.and.child.holdinghands.svg";
 
 type RobberProps = {
   center: [number, number];
@@ -28,7 +29,7 @@ export default function Robber({ center, size, coordinate }: RobberProps) {
         top: y,
       }}
     >
-      R
+      <img src={RobberIcon} alt="Robber" style={{ width: '100%', height: '100%' }} />
     </Paper>
   );
 }
