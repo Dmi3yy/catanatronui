@@ -45,18 +45,10 @@ const StateProvider = ({ children }: { children: React.ReactNode }) => {
         return { ...state, isLeftDrawerOpen: action.data };
       case ACTIONS.SET_RIGHT_DRAWER_OPENED:
           return {...state, isRightDrawerOpen: action.data };
-      case ACTIONS.SET_GAME_STATE: {
-        const newGameState = action.data;
-        // Update last_roll from the most recent ROLL action
-        if (newGameState.actions && newGameState.actions.length > 0) {
-          const lastRollAction = newGameState.actions.find((gameAction: [string, string, any]) => gameAction[1] === "ROLL");
-          if (lastRollAction) {
-            newGameState.last_roll = lastRollAction[2];
-          }
-        }
+      case ACTIONS.SET_GAME_STATE:
         return {
           ...state,
-          gameState: newGameState,
+          gameState: action.data,
           // Lazy way of turning these off
           isBuildingRoad: false,
           isBuildingSettlement: false,
@@ -67,7 +59,6 @@ const StateProvider = ({ children }: { children: React.ReactNode }) => {
           isPlayingYearOfPlenty: false,
           isMovingRobber: false,
         };
-      }
       case ACTIONS.TOGGLE_BUILDING_ROAD:
         return { ...state, isBuildingRoad: !state.isBuildingRoad}
       case ACTIONS.SET_IS_BUILDING_SETTLEMENT:
