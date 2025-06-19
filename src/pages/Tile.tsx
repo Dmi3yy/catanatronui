@@ -7,6 +7,12 @@ import desertTile from "../assets/tile_desert.svg";
 import grainTile from "../assets/tile_wheat.png";
 import lumberTile from "../assets/tile_wood.png";
 import oreTile from "../assets/tile_ore.png";
+import oreTile1 from "../assets/tiles/ore1.png";
+import oreTile2 from "../assets/tiles/ore2.png";
+import oreTile3 from "../assets/tiles/ore3.png";
+import oreTile4 from "../assets/tiles/ore4.png";
+import oreTile5 from "../assets/tiles/ore5.png";
+import oreTile6 from "../assets/tiles/ore6.png";
 import woolTile from "../assets/tile_sheep.png";
 import maritimeTile from "../assets/tile_maritime.svg";
 import { SQRT3, tilePixelVector, type Direction } from "../utils/coordinates";
@@ -36,6 +42,31 @@ export function NumberToken({
   );
 }
 
+// Map number to pip index (1-6)
+const numberToPipIndex = (number: number) => {
+  switch (number) {
+    case 2:
+    case 12:
+      return 1;
+    case 3:
+    case 11:
+      return 2;
+    case 4:
+    case 10:
+      return 3;
+    case 5:
+    case 9:
+      return 4;
+    case 6:
+      return 5;
+    case 8:
+      return 6;
+    default:
+      return 1; // fallback
+  }
+};
+
+// Map number to pip string for display
 const numberToPips = (number: number) => {
   switch (number) {
     case 2:
@@ -157,8 +188,14 @@ export default function Tile({
   let contents;
   let resourceTile;
   if (tile.type === "RESOURCE_TILE") {
+    if (tile.resource === "ORE") {
+      const oreImages = [oreTile1, oreTile2, oreTile3, oreTile4, oreTile5, oreTile6];
+      const idx = numberToPipIndex(tile.number) - 1;
+      resourceTile = oreImages[idx];
+    } else {
+      resourceTile = RESOURCES[tile.resource];
+    }
     contents = <NumberToken number={tile.number} flashing={flashing} />;
-    resourceTile = RESOURCES[tile.resource];
   } else if (tile.type === "DESERT") {
     resourceTile = desertTile;
   } else if (tile.type === "PORT") {
