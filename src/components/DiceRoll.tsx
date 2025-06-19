@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './DiceRoll.scss';
 
 // Import dice faces
@@ -23,6 +23,16 @@ interface DiceRollProps {
 }
 
 const DiceRoll: React.FC<DiceRollProps> = ({ values }) => {
+  const [isRolling, setIsRolling] = useState(false);
+
+  useEffect(() => {
+    if (values) {
+      setIsRolling(true);
+      const timer = setTimeout(() => setIsRolling(false), 500);
+      return () => clearTimeout(timer);
+    }
+  }, [values]);
+
   if (!values) return null;
 
   const [die1, die2] = values;
@@ -32,12 +42,12 @@ const DiceRoll: React.FC<DiceRollProps> = ({ values }) => {
       <img 
         src={yellowDice[die1 - 1]} 
         alt={`Die 1: ${die1}`} 
-        className="die"
+        className={`die ${isRolling ? 'die-rolling' : ''}`} 
       />
       <img 
         src={redDice[die2 - 1]} 
         alt={`Die 2: ${die2}`} 
-        className="die"
+        className={`die ${isRolling ? 'die-rolling' : ''}`} 
       />
     </div>
   );
