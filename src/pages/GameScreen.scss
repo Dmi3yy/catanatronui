@@ -125,7 +125,9 @@ main {
   min-height: 120px;
   max-height: 500px;
   overflow-y: auto;
-  padding: 0.25rem;
+  padding: 0 !important;
+  display: flex;
+  justify-content: center;
 }
 .center-content {
   flex: 1 1 0;
@@ -224,3 +226,21 @@ main {
   max-height: 100vw;
   object-fit: contain;
 }
+
+.player-state-list {
+  padding-top:0.2rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.2rem 0.4rem;
+  justify-content: center;
+  width: 100%;
+  max-width: 100vw;
+}
+
+.player-state-box {
+  flex: 0 1 48%;
+  max-width: 48%;
+  margin: 0.1rem 0;
+}
+
+

@@ -23,19 +23,20 @@ const ROBOT_THINKING_TIME = 300;
 function LeftContent({ gameState }) {
   return (
     <div className="left-content">
-      {gameState.colors.map((color) => {
-        const key = playerKey(gameState, color);
-        return (
-          <React.Fragment key={color}>
-              <PlayerStateBox
-                playerState={gameState.player_state}
-                playerKey={key}
-                color={color}
-              />
-            <Divider />
-          </React.Fragment>
-        );
-      })}
+      <div className="player-state-list">
+        {gameState.colors.map((color) => {
+          const key = playerKey(gameState, color);
+          return (
+            <React.Fragment key={color}>
+                <PlayerStateBox
+                  playerState={gameState.player_state}
+                  playerKey={key}
+                  color={color}
+                />
+            </React.Fragment>
+          );
+        })}
+      </div>
     </div>
   );
 }
