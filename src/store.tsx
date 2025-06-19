@@ -45,15 +45,11 @@ const StateProvider = ({ children }: { children: React.ReactNode }) => {
       case ACTIONS.SET_RIGHT_DRAWER_OPENED:
           return {...state, isRightDrawerOpen: action.data };
       case ACTIONS.SET_GAME_STATE:
-        // Find the last roll action in the new game state
-        const lastRollAction = action.data.actions.find((a: any[]) => a[1] === "ROLL");
-        
-        // If we found a roll action, use its values
-        const newDiceValues = lastRollAction ? lastRollAction[2] : null;
-        
-        // If this is a new roll, update the dice values
-        // If not, keep the previous dice values
-        const last_roll = newDiceValues || (state.gameState && state.gameState.last_roll) || null;
+        // For roll actions, use the last roll value from the action
+        const lastRollAction = action.data.actions[action.data.actions.length - 1];
+        const last_roll = (lastRollAction && lastRollAction[1] === "ROLL") 
+          ? lastRollAction[2] 
+          : (action.data.last_roll || state.gameState?.last_roll || null);
         
         return {
           ...state,

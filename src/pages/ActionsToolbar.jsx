@@ -44,12 +44,10 @@ function PlayButtons() {
     memoize((action) => async () => {
       const gameState = await postAction(gameId, action);
       
-      // If this is a roll action, make sure to update the dice values
+      // For roll action, immediately update the dice values
       if (action && action[1] === "ROLL") {
-        const lastRollAction = gameState.actions.find(a => a[1] === "ROLL");
-        if (lastRollAction) {
-          gameState.last_roll = lastRollAction[2];
-        }
+        const rollValue = gameState.actions[gameState.actions.length - 1][2];
+        gameState.last_roll = rollValue;
       }
       
       dispatch({ type: ACTIONS.SET_GAME_STATE, data: gameState });
