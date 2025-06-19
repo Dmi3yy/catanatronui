@@ -7,6 +7,7 @@ import Node from "./Node";
 import Edge from "./Edge";
 import Robber from "./Robber";
 import DiceRoll from "../components/DiceRoll";
+import { computeDefaultSize } from "../utils/coordinates";
 
 import "./Board.scss";
 
@@ -32,18 +33,16 @@ function computeDefaultSize(divWidth, divHeight) {
 }
 
 export default function Board({
+  gameState,
   width,
-  height,
+  show,
+  replayMode,
+  isMovingRobber,
+  handleTileClick,
   buildOnNodeClick,
   buildOnEdgeClick,
-  handleTileClick,
   nodeActions,
   edgeActions,
-  replayMode,
-  gameState,
-  isMobile,
-  show,
-  isMovingRobber,
 }) {
   // Get the last roll values from game state
   const lastRollAction = gameState.actions.find(action => action[1] === "ROLL");
