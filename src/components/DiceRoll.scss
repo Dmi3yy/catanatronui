@@ -1,0 +1,25 @@
+.dice-roll {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  gap: 10px;
+  z-index: 1000;
+  
+  .die {
+    width: 40px;
+    height: 40px;
+    opacity: 0.65;
+    backdrop-filter: blur(4px);
+    filter: 
+      drop-shadow(0px 4px 8px rgba(0, 0, 0, 0.1))
+      drop-shadow(0px 0px 12px rgba(255, 255, 255, 0.15));
+    transition: filter 0.2s ease;
+
+    &:hover {
+      filter: 
+        drop-shadow(0px 4px 6px rgba(0, 0, 0, 0.2))
+        drop-shadow(0px 0px 10px rgba(255, 255, 255, 0.2));
+    }
+  }
+} 

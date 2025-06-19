@@ -1,3 +1,4 @@
+import React from "react";
 import classnames from "classnames";
 
 import { SQRT3 } from "../utils/coordinates";
@@ -5,6 +6,7 @@ import Tile from "./Tile";
 import Node from "./Node";
 import Edge from "./Edge";
 import Robber from "./Robber";
+import DiceRoll from "../components/DiceRoll";
 
 import "./Board.scss";
 
@@ -43,6 +45,10 @@ export default function Board({
   show,
   isMovingRobber,
 }) {
+  // Get the last roll values from game state
+  const lastRollAction = gameState.actions.find(action => action[1] === "ROLL");
+  const diceValues = lastRollAction ? lastRollAction[2] : null;
+
   // TODO: Keep in sync with CSS
   const containerHeight = width-20;
   const containerWidth = width-20;
@@ -96,6 +102,7 @@ export default function Board({
   );
   return (
     <div className={classnames("board", { show })}>
+      <DiceRoll values={diceValues} />
       {tiles}
       {edges}
       {nodes}
