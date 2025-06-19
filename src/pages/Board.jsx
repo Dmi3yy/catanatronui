@@ -45,11 +45,8 @@ export default function Board({
   show,
   isMovingRobber,
 }) {
-  // Get dice values from the last roll action or from the game state
-  const diceValues = gameState.last_roll || (() => {
-    const lastRollAction = gameState.actions.find(action => action[1] === "ROLL");
-    return lastRollAction ? lastRollAction[2] : null;
-  })();
+  // Get dice values directly from the game state
+  const diceValues = gameState.last_roll;
 
   // TODO: Keep in sync with CSS
   const containerHeight = width-20;

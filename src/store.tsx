@@ -47,13 +47,19 @@ const StateProvider = ({ children }: { children: React.ReactNode }) => {
       case ACTIONS.SET_GAME_STATE:
         // Find the last roll action in the new game state
         const lastRollAction = action.data.actions.find((a: any[]) => a[1] === "ROLL");
-        const last_roll = lastRollAction ? lastRollAction[2] : null;
+        
+        // If we found a roll action, use its values
+        const newDiceValues = lastRollAction ? lastRollAction[2] : null;
+        
+        // If this is a new roll, update the dice values
+        // If not, keep the previous dice values
+        const last_roll = newDiceValues || (state.gameState && state.gameState.last_roll) || null;
         
         return {
           ...state,
           gameState: {
             ...action.data,
-            last_roll, // Store the last roll in the game state
+            last_roll,
           },
           // Lazy way of turning these off
           isBuildingRoad: false,
