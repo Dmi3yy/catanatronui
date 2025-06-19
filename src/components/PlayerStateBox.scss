@@ -6,7 +6,7 @@
   display: flex;
   gap: 6px;
 
-  margin-bottom: variables.$sm-gutter;
+  margin-bottom: 0;
 
   .card {
     border-radius: 4px;
@@ -107,6 +107,171 @@
 }
 
 .player-name {
-  font-size: 12px;
+  font-size: 0.6rem!important;
   opacity: 0.9;
+}
+.player-name-ai {
+  position: relative;
+  top:-3px;
+  font-size: 0.4rem!important;
+  opacity: 0.9;
+}
+.player-avatar {float: left;margin-right: 0.5rem;}
+
+.player-avatar IMG{
+  height: 26px;
+  width: 26px;
+  border-radius: 8px;
+}
+
+.ai-engine-icon {
+  float: right;
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+}
+.player-timer {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+  font-size: 0.8rem;
+}
+.player-timer svg {
+  margin-top: -2.5px!important;
+  width: 0.8rem!important;
+  color: rgba(207, 185, 185, 0.5) !important;
+}
+
+.player-icon {
+  width: 0.8rem !important;
+  height: 0.8rem !important;
+  min-width: 0.8rem;
+  min-height: 0.8rem;
+  max-width: 0.8rem;
+  max-height: 0.8rem;
+  margin: 0 !important;
+  vertical-align: middle;
+  display: inline-block;
+  object-fit: contain;
+}
+.player-rating {
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+  font-size: 1.1rem;
+  justify-content: center;
+}
+.player-rating span {
+  display: inline-block;
+  vertical-align: middle;
+  text-align: center;
+}
+.player-rating-star,
+.player-rating-medal {
+  float: none;
+  background: none;
+}
+
+.player-timer .timer-icon {
+  @extend .player-icon;
+  color: rgba(207, 185, 185, 0.5) !important;
+}
+
+.player-rating .rating-medal {
+  width: 0.9rem;
+  height: 0.9rem;
+  margin-right: 0.2rem;
+  vertical-align: middle;
+}
+.player-rating .rating-star {
+  width: 0.9rem;
+  height: 0.9rem;
+  margin-left: 0.2rem;
+  vertical-align: middle;
+}
+.victory-points .vp-star {
+  width: 0.9rem;
+  height: 0.9rem;
+  margin-left: 0.2rem;
+  vertical-align: middle;
+}
+.player-rating-star{
+  float:left;
+  //background-color: #6b6b6b;
+}
+.player-rating-medal{
+  float:left;
+  //background-color: #6b6b6b;
+}
+
+.player-rating IMG{
+  margin-top: -2.5px!important;
+  width: 1.5rem!important;
+}
+
+.player-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.player-name-block {
+  display: flex;
+  align-items: baseline;
+  gap: 0.4rem;
+  margin-bottom: 0.1rem;
+}
+.player-name {
+  font-size: 1.1rem;
+  font-weight: 700;
+  display: inline-block;
+}
+.player-bot {
+  font-size: 0.7rem;
+  opacity: 0.7;
+  margin-left: 0.2rem;
+  font-weight: 400;
+}
+.player-stats-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.8rem;
+  margin-top: 0.1rem;
+  max-width: 100%!important;
+}
+
+.player-stats-right {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  gap: 1.1rem;
+  min-width: unset;
+}
+.player-stat-block {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.2rem;
+  min-width: 1rem;
+}
+.player-stat-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.player-stat-value {
+  font-size: 0.8rem;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.player-stat-label {
+  font-size: 0.4rem;
+  color: #bbb;
+  opacity: 0.8;
+  line-height: 1;
+}
+.player-state-box-inner{
+  margin-bottom: 10px;
 }

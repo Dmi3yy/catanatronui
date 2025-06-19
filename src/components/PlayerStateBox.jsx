@@ -3,6 +3,11 @@ import cn from "classnames";
 
 import "./PlayerStateBox.scss";
 import { Paper } from "@mui/material";
+import deskclock from "../assets/icons/deskclock.fill.svg";
+import medalStar from "../assets/icons/medal.star.svg";
+import star from "../assets/icons/star.svg";
+import roadLanes from "../assets/icons/road.lanes.curved.right.svg";
+import fencing from "../assets/icons/figure.fencing.svg";
 
 export function ResourceCards({ playerState, playerKey }) {
   const amount = (card) => playerState[`${playerKey}_${card}_IN_HAND`];
@@ -96,42 +101,54 @@ export function ResourceCards({ playerState, playerKey }) {
 export default function PlayerStateBox({ playerState, playerKey, color, name }) {
   const actualVps = playerState[`${playerKey}_ACTUAL_VICTORY_POINTS`];
   return (
-    <div className={cn("player-state-box foreground", color)}>
-      {name && (
-        <div className="player-name">
-          <strong>{name}</strong>
-        </div>
-      )}
-      <ResourceCards playerState={playerState} playerKey={playerKey} />
-      <div className="scores">
-        <div
-          className={cn("num-knights center-text", {
-            bold: playerState[`${playerKey}_HAS_ARMY`],
-          })}
-          title="Knights Played"
-        >
-          <span>{playerState[`${playerKey}_PLAYED_KNIGHT`]}</span>
-          <small>knights</small>
-        </div>
-        <div
-          className={cn("num-roads center-text", {
-            bold: playerState[`${playerKey}_HAS_ROAD`],
-          })}
-          title="Longest Road"
-        >
-          {playerState[`${playerKey}_LONGEST_ROAD_LENGTH`]}
-          <small>roads</small>
-        </div>
-        <div
-          className={cn("victory-points center-text", {
-            bold: actualVps >= 10,
-          })}
-          title="Victory Points"
-        >
-          {actualVps}
-          <small>VPs</small>
-        </div>
+      <div className={cn("player-state-box foreground", color)}>
+
+          <div className="player-state-box-inner">
+          <div className="player-avatar">
+              <img src="https://i.pravatar.cc/50" alt="Avatar"/>
+          </div>
+          <div className="player-info">
+            <div className="player-name-block">
+              <span className="player-name">{name}</span>
+              <sup className="player-name-ai">gpt-4.1-nano</sup>
+            </div>
+            <div className="player-stats-row">
+              <div className="player-stat-block">
+                <img src={star} alt="Star" className="player-icon" />
+                <div className="player-stat-text">
+                  <span className="player-stat-value">{actualVps}</span>
+                </div>
+              </div>
+              <div className="player-stat-block">
+                <img src={medalStar} alt="Rating" className="player-icon" />
+                <div className="player-stat-text">
+                  <span className="player-stat-value">212</span>
+                </div>
+              </div>
+              <div className="player-stat-block">
+                <img src={fencing} alt="Knights" className="player-icon" />
+                <div className="player-stat-text">
+                  <span className="player-stat-value">{playerState[`${playerKey}_PLAYED_KNIGHT`]}</span>
+                </div>
+              </div>
+              <div className="player-stat-block">
+                <img src={roadLanes} alt="Roads" className="player-icon" />
+                <div className="player-stat-text">
+                  <span className="player-stat-value">{playerState[`${playerKey}_LONGEST_ROAD_LENGTH`]}</span>
+                </div>
+              </div>
+              <div className="player-stat-block">
+                <img src={deskclock} alt="Timer" className="player-icon" />
+                <div className="player-stat-text">
+                  <span className="player-stat-value">3:31</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          </div>
+
+          <ResourceCards playerState={playerState} playerKey={playerKey}/>
+
       </div>
-    </div>
   );
 }
