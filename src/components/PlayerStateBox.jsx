@@ -119,12 +119,12 @@ export default function PlayerStateBox({ playerState, playerKey, color, name }) 
                   <span className="player-stat-value">{actualVps}</span>
                 </div>
               </div>
-              <div className="player-stat-block">
-                <img src={medalStar} alt="Rating" className="player-icon" />
-                <div className="player-stat-text">
-                  <span className="player-stat-value">212</span>
-                </div>
-              </div>
+              {/*<div className="player-stat-block">*/}
+              {/*  <img src={medalStar} alt="Rating" className="player-icon" />*/}
+              {/*  <div className="player-stat-text">*/}
+              {/*    <span className="player-stat-value">212</span>*/}
+              {/*  </div>*/}
+              {/*</div>*/}
               <div className="player-stat-block">
                 <img src={fencing} alt="Knights" className="player-icon" />
                 <div className="player-stat-text">
