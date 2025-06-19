@@ -98,12 +98,12 @@ export function ResourceCards({ playerState, playerKey }) {
   );
 }
 
-export default function PlayerStateBox({ playerState, playerKey, color, name }) {
+export default function PlayerStateBox({ playerState, playerKey, color, name, currentColor }) {
   const actualVps = playerState[`${playerKey}_ACTUAL_VICTORY_POINTS`];
-  const isCurrentPlayer = color === playerState.current_color;
+  const isCurrentPlayer = color === currentColor;
 
   return (
-      <div className={cn("player-state-box foreground", color)}>
+      <div className={cn("player-state-box foreground", color, { active: isCurrentPlayer })}>
           <div className="player-state-box-inner">
           <div className="player-avatar">
               <img src="https://i.pravatar.cc/50" alt="Avatar"/>

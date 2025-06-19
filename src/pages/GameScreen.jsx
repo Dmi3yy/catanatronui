@@ -46,6 +46,7 @@ function LeftContent({ gameState }) {
                   playerKey={key}
                   color={color}
                   name={name}
+                  currentColor={gameState.current_color}
                 />
             </React.Fragment>
           );
