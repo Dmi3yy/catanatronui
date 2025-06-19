@@ -46,7 +46,7 @@ export default function Board({
   isMovingRobber,
 }) {
   // Get the last roll values from game state
-  const lastRollAction = gameState.actions.find(action => action[1] === "ROLL");
+  const lastRollAction = gameState.actions.slice().reverse().find(action => action[1] === "ROLL");
   const diceValues = lastRollAction ? lastRollAction[2] : null;
 
   // TODO: Keep in sync with CSS
