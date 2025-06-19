@@ -2,14 +2,14 @@ import cn from "classnames";
 import Paper from "@mui/material/Paper";
 
 import "./Tile.scss";
-import brickTile from "../assets/tile_brick.svg";
+import brickTile from "../assets/tiles/brick1.png";
 import desertTile from "../assets/tiles/desert.png";
 import grainTile from "../assets/tiles/wheat1.png";
-import lumberTile from "../assets/tile_wood.png";
-import oreTile from "../assets/tile_ore.png";
+import lumberTile from "../assets/tiles/wood1.png";
+import oreTile from "../assets/tiles/ore1.png";
 import oreTile1 from "../assets/tiles/ore1.png";
 import woolTile from "../assets/tiles/sheep1.png";
-import maritimeTile from "../assets/tile_maritime.svg";
+import maritimeTile from "../assets/tiles/water.png";
 import { SQRT3, tilePixelVector, type Direction } from "../utils/coordinates";
 import number2 from "../assets/numbers/2.circle.fill.svg";
 import number3 from "../assets/numbers/3.circle.fill.svg";
@@ -155,9 +155,9 @@ const Port = ({ resource, style }: { resource: Resource; style: Partial<React.CS
           style={{
             ...style,
             backgroundImage: `url("${tile}")`,
-            height: 60,
+            height: 40,
             backgroundSize: "contain",
-            width: 52,
+            width: 40,
             backgroundRepeat: "no-repeat",
           }}
         >
