@@ -35,8 +35,7 @@ export default function Board({
   edgeActions,
 }) {
   // Get the last roll values from game state
-  const lastRollAction = gameState.actions.find(action => action[1] === "ROLL");
-  const diceValues = lastRollAction ? lastRollAction[2] : null;
+  const diceValues = gameState.last_roll || null;
 
   // TODO: Keep in sync with CSS
   const containerHeight = width-20;
