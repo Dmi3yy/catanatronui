@@ -80,7 +80,7 @@
   width: 100%;
   height: 100%;
   border-radius: 6px;
-  opacity: 0.9;
+  opacity: 0.98;
   backdrop-filter: blur(8px) saturate(150%) brightness(1.2);
   -webkit-backdrop-filter: blur(8px) saturate(180%) brightness(1.2);
   border: 1px solid rgba(255, 255, 255, 0.2);
@@ -123,34 +123,88 @@
   align-items: center;
 }
 .settlement {
-  width: 80%;
-  height: 80%;
+  width: 1.6rem;
+  height: 1.6rem;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  &:before {
+    content: '';
+    position: absolute;
+    width: 0.8rem;
+    height: 0.8rem;
+    background: url('../assets/icons/house.svg') center center no-repeat;
+    background-size: contain;
+    filter: brightness(1.2) invert(1);
+  }
 }
+
 .city {
-  width: 100%;
-  height: 100%;
+  width: 2rem;
+  height: 2rem;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  &:before {
+    content: '';
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    background: url('../assets/icons/house.lodge.svg') center center no-repeat;
+    background-size: contain;
+    filter: brightness(0) invert(1);
+  }
 }
 .settlement,
 .city {
-  border-radius: 15px; // mimic Paper
-  border: 2px solid variables.$dark-gray;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
 }
 
-.BLUE.city {
-  border: 4px solid variables.$blue;
-  background: variables.$dark-gray;
+.BLUE.city,
+.BLUE.settlement {
+  background: rgba(variables.$blue, 0.8);
+  &:before {
+    filter: brightness(0) invert(1);
+  }
 }
-.RED.city {
-  border: 4px solid variables.$red;
-  background: variables.$dark-gray;
+.RED.city,
+.RED.settlement {
+  background: rgba(variables.$red, 0.8);
+  &:before {
+    filter: brightness(0) invert(1);
+  }
 }
-.ORANGE.city {
-  border: 4px solid variables.$orange;
-  background: variables.$dark-gray;
+.ORANGE.city,
+.ORANGE.settlement {
+  background: rgba(variables.$orange, 0.8);
+  &:before {
+    filter: brightness(0) invert(1);
+  }
 }
-.WHITE.city {
-  border: 4px solid variables.$white;
-  background: variables.$dark-gray;
+.WHITE.city,
+.WHITE.settlement {
+  background: rgba(variables.$white, 0.8);
+  &:before {
+    filter: brightness(0) invert(1);
+  }
 }
 
 // Taken from https://codepen.io/peeke/pen/BjxXZa.

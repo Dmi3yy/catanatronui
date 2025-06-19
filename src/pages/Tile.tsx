@@ -165,6 +165,12 @@ const Port = ({ resource, style }: { resource: Resource; style: Partial<React.CS
         </div>
 }
 
+// Calculate opacity based on pip index (1-6)
+const calculateOpacity = (number: number): number => {
+  const pipIndex = numberToPipIndex(number);
+  return 0.82 + (pipIndex * 0.03); 
+};
+
 type TileProps = {
   center: any;
   coordinate: any;
@@ -189,21 +195,27 @@ export default function Tile({
 
   let contents;
   let resourceTile;
+  let opacity = 1;
+
   if (tile.type === "RESOURCE_TILE") {
     if (tile.resource === "ORE") {
       const oreImages = [oreTile1, oreTile1, oreTile1, oreTile1, oreTile1, oreTile1];
       const idx = numberToPipIndex(tile.number) - 1;
       resourceTile = oreImages[idx];
+      opacity = calculateOpacity(tile.number);
     } else if (tile.resource === "BRICK") {
       const brickImages = [brickTile1, brickTile1, brickTile1, brickTile1, brickTile1, brickTile1];
       const idx = numberToPipIndex(tile.number) - 1;
       resourceTile = brickImages[idx];
+      opacity = calculateOpacity(tile.number);
     } else if (tile.resource === "WOOD") {
       const woodImages = [woodTile1, woodTile1, woodTile1, woodTile1, woodTile1, woodTile1];
       const idx = numberToPipIndex(tile.number) - 1;
       resourceTile = woodImages[idx];
+      opacity = calculateOpacity(tile.number);
     } else {
       resourceTile = RESOURCES[tile.resource];
+      opacity = calculateOpacity(tile.number);
     }
     contents = <NumberToken number={tile.number} flashing={flashing} />;
   } else if (tile.type === "DESERT") {
@@ -211,7 +223,7 @@ export default function Tile({
   } else if (tile.type === "PORT") {
     const { x, y } = calculatePortPosition(tile.direction, size);
     contents = (<Port resource={tile.resource} style={{ left: x, top: y }}  />)
-    }
+  }
 
   return (
     <div
@@ -227,8 +239,7 @@ export default function Tile({
         backgroundRepeat: "no-repeat",
         backgroundPositionY: "6px",
         backgroundPositionX: "1px",
-        opacity: "1"
-
+        opacity: Math.min(opacity, 1) // Ensure opacity never exceeds 1
       }}
       onClick={onClick}
     >
