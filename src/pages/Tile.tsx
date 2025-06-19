@@ -4,16 +4,11 @@ import Paper from "@mui/material/Paper";
 import "./Tile.scss";
 import brickTile from "../assets/tile_brick.svg";
 import desertTile from "../assets/tiles/desert.png";
-import grainTile from "../assets/tile_wheat.png";
+import grainTile from "../assets/tiles/wheat1.png";
 import lumberTile from "../assets/tile_wood.png";
 import oreTile from "../assets/tile_ore.png";
 import oreTile1 from "../assets/tiles/ore1.png";
-import oreTile2 from "../assets/tiles/ore2.png";
-import oreTile3 from "../assets/tiles/ore3.png";
-import oreTile4 from "../assets/tiles/ore4.png";
-import oreTile5 from "../assets/tiles/ore5.png";
-import oreTile6 from "../assets/tiles/ore6.png";
-import woolTile from "../assets/tile_sheep.png";
+import woolTile from "../assets/tiles/sheep1.png";
 import maritimeTile from "../assets/tile_maritime.svg";
 import { SQRT3, tilePixelVector, type Direction } from "../utils/coordinates";
 import number2 from "../assets/numbers/2.circle.fill.svg";
@@ -27,17 +22,7 @@ import number10 from "../assets/numbers/10.circle.fill.svg";
 import number11 from "../assets/numbers/11.circle.fill.svg";
 import number12 from "../assets/numbers/12.circle.fill.svg";
 import brickTile1 from "../assets/tiles/brick1.png";
-import brickTile2 from "../assets/tiles/brick2.png";
-import brickTile3 from "../assets/tiles/brick3.png";
-import brickTile4 from "../assets/tiles/brick4.png";
-import brickTile5 from "../assets/tiles/brick5.png";
-import brickTile6 from "../assets/tiles/brick6.png";
 import woodTile1 from "../assets/tiles/wood1.png";
-import woodTile2 from "../assets/tiles/wood2.png";
-import woodTile3 from "../assets/tiles/wood3.png";
-import woodTile4 from "../assets/tiles/wood4.png";
-import woodTile5 from "../assets/tiles/wood5.png";
-import woodTile6 from "../assets/tiles/wood6.png";
 
 type NumberTokenProps = {
   number: number;
@@ -206,15 +191,15 @@ export default function Tile({
   let resourceTile;
   if (tile.type === "RESOURCE_TILE") {
     if (tile.resource === "ORE") {
-      const oreImages = [oreTile1, oreTile2, oreTile3, oreTile4, oreTile5, oreTile6];
+      const oreImages = [oreTile1, oreTile1, oreTile1, oreTile1, oreTile1, oreTile1];
       const idx = numberToPipIndex(tile.number) - 1;
       resourceTile = oreImages[idx];
     } else if (tile.resource === "BRICK") {
-      const brickImages = [brickTile1, brickTile2, brickTile3, brickTile4, brickTile5, brickTile6];
+      const brickImages = [brickTile1, brickTile1, brickTile1, brickTile1, brickTile1, brickTile1];
       const idx = numberToPipIndex(tile.number) - 1;
       resourceTile = brickImages[idx];
     } else if (tile.resource === "WOOD") {
-      const woodImages = [woodTile1, woodTile2, woodTile3, woodTile4, woodTile5, woodTile6];
+      const woodImages = [woodTile1, woodTile1, woodTile1, woodTile1, woodTile1, woodTile1];
       const idx = numberToPipIndex(tile.number) - 1;
       resourceTile = woodImages[idx];
     } else {
@@ -241,7 +226,8 @@ export default function Tile({
         backgroundSize: "contain",
         backgroundRepeat: "no-repeat",
         backgroundPositionY: "6px",
-        backgroundPositionX: "1px"
+        backgroundPositionX: "1px",
+        opacity: "1"
 
       }}
       onClick={onClick}
