@@ -93,10 +93,15 @@ export function ResourceCards({ playerState, playerKey }) {
   );
 }
 
-export default function PlayerStateBox({ playerState, playerKey, color }) {
+export default function PlayerStateBox({ playerState, playerKey, color, name }) {
   const actualVps = playerState[`${playerKey}_ACTUAL_VICTORY_POINTS`];
   return (
     <div className={cn("player-state-box foreground", color)}>
+      {name && (
+        <div className="player-name">
+          <strong>{name}</strong>
+        </div>
+      )}
       <ResourceCards playerState={playerState} playerKey={playerKey} />
       <div className="scores">
         <div

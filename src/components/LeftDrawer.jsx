@@ -14,14 +14,28 @@ import { playerKey } from "../utils/stateUtils";
 import "./LeftDrawer.scss";
 
 function DrawerContent({ gameState }) {
-  const playerSections = gameState.colors.map((color) => {
+  // Типи гравців у порядку кольорів (якщо поле players відсутнє, використовуємо HUMAN/CATANATRON/RANDOM за замовчуванням)
+  const playerTypes = gameState.players || gameState.player_types || gameState.colors.map((color, idx) => {
+    if (idx === 0) return "HUMAN";
+    if (gameState.bot_colors && gameState.bot_colors.includes(color)) return "CATANATRON";
+    return "RANDOM";
+  });
+  const playerTypeToName = {
+    HUMAN: "Ти",
+    CATANATRON: "Catanatron",
+    RANDOM: "Бот"
+  };
+  const playerSections = gameState.colors.map((color, idx) => {
     const key = playerKey(gameState, color);
+    const type = playerTypes[idx] || "RANDOM";
+    const name = playerTypeToName[type] || type;
     return (
       <React.Fragment key={color}>
         <PlayerStateBox
           playerState={gameState.player_state}
           playerKey={key}
           color={color}
+          name={name}
         />
         <Divider />
       </React.Fragment>

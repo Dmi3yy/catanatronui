@@ -21,17 +21,31 @@ import AssessmentIcon from "@mui/icons-material/Assessment";
 const ROBOT_THINKING_TIME = 300;
 
 function LeftContent({ gameState }) {
+  // Типи гравців у порядку кольорів (якщо поле players відсутнє, використовуємо HUMAN/CATANATRON/RANDOM за замовчуванням)
+  const playerTypes = gameState.players || gameState.player_types || gameState.colors.map((color, idx) => {
+    if (idx === 0) return "HUMAN";
+    if (gameState.bot_colors && gameState.bot_colors.includes(color)) return "CATANATRON";
+    return "RANDOM";
+  });
+  const playerTypeToName = {
+    HUMAN: "HUMAN",
+    CATANATRON: "CATANATRON",
+    RANDOM: "RANDOM"
+  };
   return (
     <div className="left-content">
       <div className="player-state-list">
-        {gameState.colors.map((color) => {
+        {gameState.colors.map((color, idx) => {
           const key = playerKey(gameState, color);
+          const type = playerTypes[idx] || "RANDOM";
+          const name = playerTypeToName[type] || type;
           return (
             <React.Fragment key={color}>
                 <PlayerStateBox
                   playerState={gameState.player_state}
                   playerKey={key}
                   color={color}
+                  name={name}
                 />
             </React.Fragment>
           );
