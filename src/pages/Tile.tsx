@@ -168,7 +168,7 @@ const Port = ({ resource, style }: { resource: Resource; style: Partial<React.CS
 // Calculate opacity based on pip index (1-6)
 const calculateOpacity = (number: number): number => {
   const pipIndex = numberToPipIndex(number);
-  return 0.82 + (pipIndex * 0.03); 
+  return 0.72 + (pipIndex * 0.03);
 };
 
 type TileProps = {

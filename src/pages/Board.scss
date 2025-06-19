@@ -80,7 +80,7 @@
   width: 100%;
   height: 100%;
   border-radius: 6px;
-  opacity: 0.98;
+  opacity: 0.9;
   backdrop-filter: blur(8px) saturate(150%) brightness(1.2);
   -webkit-backdrop-filter: blur(8px) saturate(180%) brightness(1.2);
   border: 1px solid rgba(255, 255, 255, 0.2);
@@ -145,6 +145,7 @@
     background: url('../assets/icons/house.svg') center center no-repeat;
     background-size: contain;
     filter: brightness(1.2) invert(1);
+    opacity: 0.8;
   }
 }
 
@@ -170,12 +171,19 @@
     height: 24px;
     background: url('../assets/icons/house.lodge.svg') center center no-repeat;
     background-size: contain;
-    filter: brightness(0) invert(1);
+    filter: brightness(1.2) invert(1);
+    opacity: 0.8;
   }
 }
 .settlement,
 .city {
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  //box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px); /* для Safari, бо він живе у 2012 */
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  opacity:0.95;
 }
 
 .BLUE.city,
