@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import './TurnTimer.scss';
 
 interface TurnTimerProps {
   isCurrentPlayer: boolean;
@@ -37,5 +38,8 @@ export const TurnTimer: React.FC<TurnTimerProps> = ({ isCurrentPlayer }) => {
   const seconds = timeLeft % 60;
   const formattedTime = `${minutes}:${seconds.toString().padStart(2, '0')}`;
 
-  return formattedTime;
+  // Add warning class when less than 30 seconds left
+  const className = timeLeft <= 30 ? 'timer-warning' : '';
+
+  return <span className={className}>{formattedTime}</span>;
 }; 

@@ -100,7 +100,7 @@ export function ResourceCards({ playerState, playerKey }) {
 
 export default function PlayerStateBox({ playerState, playerKey, color, name }) {
   const actualVps = playerState[`${playerKey}_ACTUAL_VICTORY_POINTS`];
-  const isCurrentPlayer = playerState.current_player === playerKey;
+  const isCurrentPlayer = color === playerState.current_color;
 
   return (
       <div className={cn("player-state-box foreground", color)}>
