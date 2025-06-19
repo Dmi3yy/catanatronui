@@ -26,6 +26,12 @@ import number9 from "../assets/numbers/9.circle.fill.svg";
 import number10 from "../assets/numbers/10.circle.fill.svg";
 import number11 from "../assets/numbers/11.circle.fill.svg";
 import number12 from "../assets/numbers/12.circle.fill.svg";
+import brickTile1 from "../assets/tiles/brick1.png";
+import brickTile2 from "../assets/tiles/brick2.png";
+import brickTile3 from "../assets/tiles/brick3.png";
+import brickTile4 from "../assets/tiles/brick4.png";
+import brickTile5 from "../assets/tiles/brick5.png";
+import brickTile6 from "../assets/tiles/brick6.png";
 
 type NumberTokenProps = {
   number: number;
@@ -197,6 +203,10 @@ export default function Tile({
       const oreImages = [oreTile1, oreTile2, oreTile3, oreTile4, oreTile5, oreTile6];
       const idx = numberToPipIndex(tile.number) - 1;
       resourceTile = oreImages[idx];
+    } else if (tile.resource === "BRICK") {
+      const brickImages = [brickTile1, brickTile2, brickTile3, brickTile4, brickTile5, brickTile6];
+      const idx = numberToPipIndex(tile.number) - 1;
+      resourceTile = brickImages[idx];
     } else {
       resourceTile = RESOURCES[tile.resource];
     }
