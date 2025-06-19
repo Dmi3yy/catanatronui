@@ -26,28 +26,18 @@ const DiceRoll: React.FC<DiceRollProps> = ({ values }) => {
   if (!values) return null;
 
   const [die1, die2] = values;
-  console.log('Dice values:', die1, die2);
-  console.log('Yellow dice path:', yellowDice[die1 - 1]);
-  console.log('Red dice path:', redDice[die2 - 1]);
-
-  // Add random parameter to prevent caching
-  const timestamp = Date.now();
-  const yellowDicePath = `${yellowDice[die1 - 1]}?t=${timestamp}`;
-  const redDicePath = `${redDice[die2 - 1]}?t=${timestamp}`;
 
   return (
-    <div className="dice-roll" key={`${die1}-${die2}`}>
+    <div className="dice-roll">
       <img 
-        src={yellowDicePath}
+        src={yellowDice[die1 - 1]} 
         alt={`Die 1: ${die1}`} 
         className="die"
-        key={`yellow-${die1}`}
       />
       <img 
-        src={redDicePath}
+        src={redDice[die2 - 1]} 
         alt={`Die 2: ${die2}`} 
         className="die"
-        key={`red-${die2}`}
       />
     </div>
   );

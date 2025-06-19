@@ -36,8 +36,6 @@ export default function Board({
 }) {
   // Get the last roll values from game state
   const diceValues = gameState.last_roll || null;
-  console.log('Game state last_roll:', gameState.last_roll);
-  console.log('Dice values in Board:', diceValues);
 
   // TODO: Keep in sync with CSS
   const containerHeight = width-20;
