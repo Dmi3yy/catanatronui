@@ -2,7 +2,7 @@ import React, { createContext, useReducer } from "react";
 import ACTIONS from "./actions";
 
 type CatanState = {
-  gameState: any | null; // TODO
+  gameState: unknown | null; // TODO
   freeRoadsAvailable: number;
   isBuildingRoad: boolean;
   isBuildingSettlement: boolean;
@@ -18,6 +18,7 @@ type ReducerAction = {
   type: keyof typeof ACTIONS;
   data: any; // TODO find exact types
 }
+
 
 const initialState: CatanState = {
   gameState: null,
@@ -45,16 +46,9 @@ const StateProvider = ({ children }: { children: React.ReactNode }) => {
       case ACTIONS.SET_RIGHT_DRAWER_OPENED:
           return {...state, isRightDrawerOpen: action.data };
       case ACTIONS.SET_GAME_STATE:
-        // Find the last roll action in the new game state
-        const lastRollAction = action.data.actions.find((a: any[]) => a[1] === "ROLL");
-        const last_roll = lastRollAction ? lastRollAction[2] : null;
-        
         return {
           ...state,
-          gameState: {
-            ...action.data,
-            last_roll, // Store the last roll in the game state
-          },
+          gameState: action.data,
           // Lazy way of turning these off
           isBuildingRoad: false,
           isBuildingSettlement: false,
