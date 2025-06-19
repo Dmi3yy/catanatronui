@@ -16,6 +16,16 @@ import oreTile6 from "../assets/tiles/ore6.png";
 import woolTile from "../assets/tile_sheep.png";
 import maritimeTile from "../assets/tile_maritime.svg";
 import { SQRT3, tilePixelVector, type Direction } from "../utils/coordinates";
+import number2 from "../assets/numbers/2.circle.fill.svg";
+import number3 from "../assets/numbers/3.circle.fill.svg";
+import number4 from "../assets/numbers/4.circle.fill.svg";
+import number5 from "../assets/numbers/5.circle.fill.svg";
+import number6 from "../assets/numbers/6.circle.fill.svg";
+import number8 from "../assets/numbers/8.circle.fill.svg";
+import number9 from "../assets/numbers/9.circle.fill.svg";
+import number10 from "../assets/numbers/10.circle.fill.svg";
+import number11 from "../assets/numbers/11.circle.fill.svg";
+import number12 from "../assets/numbers/12.circle.fill.svg";
 
 type NumberTokenProps = {
   number: number;
@@ -24,20 +34,38 @@ type NumberTokenProps = {
   flashing?: boolean;
 };
 
+const NUMBER_SVGS: Record<number, string> = {
+  2: number2,
+  3: number3,
+  4: number4,
+  5: number5,
+  6: number6,
+  8: number8,
+  9: number9,
+  10: number10,
+  11: number11,
+  12: number12,
+};
+
 export function NumberToken({
   number,
   className,
   style,
   flashing,
 }: NumberTokenProps) {
+  const svg = NUMBER_SVGS[number];
+  const bgClass = number === 6 || number === 8 ? "number-bg-red" : "number-bg-black";
   return (
     <Paper
       elevation={3}
       className={cn("number-token", className, { flashing: flashing })}
       style={style}
     >
-      <div>{number}</div>
-      <div className="pips">{numberToPips(number)}</div>
+      {svg ? (
+        <span className={cn("number-svg-bg", bgClass)}>
+          <img src={svg} alt={number.toString()} className="number-svg" />
+        </span>
+      ) : null}
     </Paper>
   );
 }
@@ -63,29 +91,6 @@ const numberToPipIndex = (number: number) => {
       return 6;
     default:
       return 1; // fallback
-  }
-};
-
-// Map number to pip string for display
-const numberToPips = (number: number) => {
-  switch (number) {
-    case 2:
-    case 12:
-      return "•";
-    case 3:
-    case 11:
-      return "••";
-    case 4:
-    case 10:
-      return "•••";
-    case 5:
-    case 9:
-      return "••••";
-    case 6:
-    case 8:
-      return "•••••";
-    default:
-      return "";
   }
 };
 
