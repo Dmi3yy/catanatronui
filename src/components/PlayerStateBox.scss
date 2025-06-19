@@ -57,51 +57,87 @@
 }
 
 .player-state-box {
-  padding: variables.$sm-gutter;
-  background: rgba(255, 255, 255, 0.1)!important;
+  padding: 10px;
+  margin: 10px;
   border-radius: 8px;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-  color: #fff;
+  transition: all 0.3s ease;
 
-  font-family: 'Segoe UI', sans-serif;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
-  max-width: variables.$sm-breakpoint;
-  float: left;
-  width: calc(50% - 0.5rem);
+  &.active {
+    border-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+  }
 
-  .scores {
+  .player-state-box-inner {
     display: flex;
-    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
   }
 
-  .num-knights,
-  .num-roads,
-  .victory-points {
-    flex-direction: column;
-    width: 50px;
-    height: 40px;
+  .player-avatar {
+    img {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+    }
   }
 
-  .bold {
+  .player-info {
+    flex-grow: 1;
+  }
+
+  .player-name-block {
+    display: flex;
+    align-items: baseline;
+    gap: 5px;
+  }
+
+  .player-name {
+    font-size: 1.2em;
     font-weight: bold;
   }
-}
 
-.player-state-box.ORANGE {
-  background: variables.$orange-glass !important;
-}
+  .player-name-ai {
+    font-size: 0.8em;
+    opacity: 0.7;
+  }
 
-.player-state-box.BLUE {
-  background: variables.$blue-glass !important;
-}
-.player-state-box.RED {
-  background: variables.$red-glass !important;
-}
-.player-state-box.WHITE {
-  background: variables.$white-glass !important;
+  .player-stats-row {
+    display: flex;
+    gap: 15px;
+    margin-top: 5px;
+  }
+
+  .player-stat-block {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+
+    .player-icon {
+      width: 20px;
+      height: 20px;
+      opacity: 0.8;
+    }
+
+    .player-stat-text {
+      font-size: 0.9em;
+    }
+  }
+
+  &.RED {
+    background: rgba(255, 0, 0, 0.2);
+  }
+
+  &.BLUE {
+    background: rgba(0, 0, 255, 0.2);
+  }
+
+  &.ORANGE {
+    background: rgba(255, 165, 0, 0.2);
+  }
+
+  &.WHITE {
+    background: rgba(255, 255, 255, 0.2);
+  }
 }
 
 .player-name {
