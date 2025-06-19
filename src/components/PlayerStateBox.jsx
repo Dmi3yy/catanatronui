@@ -1,6 +1,6 @@
 import React from "react";
 import cn from "classnames";
-
+import { TurnTimer } from "./TurnTimer";
 import "./PlayerStateBox.scss";
 import { Paper } from "@mui/material";
 import deskclock from "../assets/icons/deskclock.fill.svg";
@@ -100,9 +100,10 @@ export function ResourceCards({ playerState, playerKey }) {
 
 export default function PlayerStateBox({ playerState, playerKey, color, name }) {
   const actualVps = playerState[`${playerKey}_ACTUAL_VICTORY_POINTS`];
+  const isCurrentPlayer = playerState.current_player === playerKey;
+
   return (
       <div className={cn("player-state-box foreground", color)}>
-
           <div className="player-state-box-inner">
           <div className="player-avatar">
               <img src="https://i.pravatar.cc/50" alt="Avatar"/>
@@ -140,7 +141,9 @@ export default function PlayerStateBox({ playerState, playerKey, color, name }) 
               <div className="player-stat-block">
                 <img src={deskclock} alt="Timer" className="player-icon" />
                 <div className="player-stat-text">
-                  <span className="player-stat-value">3:31</span>
+                  <span className="player-stat-value">
+                    <TurnTimer isCurrentPlayer={isCurrentPlayer} />
+                  </span>
                 </div>
               </div>
             </div>
