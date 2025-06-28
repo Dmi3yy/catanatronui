@@ -27,8 +27,10 @@ function DrawerContent({ gameState }) {
   };
   const playerSections = gameState.colors.map((color, idx) => {
     const key = playerKey(gameState, color);
-    const type = playerTypes[idx] || "RANDOM";
-    const name = playerTypeToName[type] || type;
+    // Знаходимо гравця за кольором
+    const player = gameState.players?.find(p => p.color === color);
+    // Беремо ім'я з гравця, якщо нема — fallback на тип
+    const name = player?.name || "Unknown";
     return (
       <React.Fragment key={color}>
         <PlayerStateBox

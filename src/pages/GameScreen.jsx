@@ -37,8 +37,10 @@ function LeftContent({ gameState }) {
       <div className="player-state-list">
         {gameState.colors.map((color, idx) => {
           const key = playerKey(gameState, color);
-          const type = playerTypes[idx] || "RANDOM";
-          const name = playerTypeToName[type] || type;
+          // Find player by color
+          const player = gameState.players?.find(p => p.color === color);
+          // Get name from player, fallback to 'Unknown' if not found
+          const name = player?.name || "Unknown";
           return (
             <React.Fragment key={color}>
                 <PlayerStateBox
