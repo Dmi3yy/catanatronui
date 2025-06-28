@@ -27,10 +27,8 @@ function DrawerContent({ gameState }) {
   };
   const playerSections = gameState.colors.map((color, idx) => {
     const key = playerKey(gameState, color);
-    // Знаходимо гравця за кольором
-    const player = gameState.players?.find(p => p.color === color);
-    // Беремо ім'я з гравця, якщо нема — fallback на тип
-    const name = player?.name || "Unknown";
+    // Get name from player_names by color, fallback to 'Unknown' if not found
+    const name = gameState.player_names?.[color] || "Unknown";
     return (
       <React.Fragment key={color}>
         <PlayerStateBox
